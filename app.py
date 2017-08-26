@@ -10,14 +10,12 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
     async def handler(self):
         try:
             request_line, headers = await websockets.http.read_message(self.reader)
-			print('good night')
             method, path, version = request_line[:-2].decode().split(None, 2)
             #websockets.accept()
         except Exception as e:
             print(e.args)
             self.writer.close()
             self.ws_server.unregister(self)
-
             raise
 
         # TODO: Check headers etc. to see if we are to upgrade to WS.
@@ -41,7 +39,6 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
     async def http_handler(self, method, path, version):
         response = ''
         try:
-
             googleRequest = self.reader._buffer.decode('utf-8')
             googleRequestJson = json.loads(googleRequest)
             ESPparameters = {}
