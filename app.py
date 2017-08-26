@@ -65,7 +65,7 @@ class HttpWSSProtocol(websockets.WebSocketServerProtocol):
                 print("Device is not connected!")
                 return
             #await self.rwebsocket.send(json.dumps(googleRequestJson))
-            await self.rwebsocket.send(json.dumps(ESPparameters))
+            #await self.rwebsocket.send(json.dumps(ESPparameters))
             await self.rwebsocket.send("Hello"))
             #wait for response and send it back to Alexa as is
             self.rddata = await self.rwebsocket.recv()
